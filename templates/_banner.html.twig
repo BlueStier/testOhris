@@ -1,0 +1,53 @@
+{% block body %}
+	<section class="banner">
+		<div class="bg-banner"></div>
+		<div class="container-swiper">
+			<h1>
+				Concerts & Co
+			</h1>
+			<p>
+				Music, Songs... Have fun !
+			</p>
+		</div>
+		<div class="swiper mySwiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/dead.webp') }}" loading="lazy" alt="the dead south" />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/daft.webp') }}" loading="lazy" alt="Daft punk" />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/iam.webp') }}" loading="lazy" alt="Iam" />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/mk.webp') }}" loading="lazy" alt="Mental Kombat" />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/ntm.webp') }}" loading="lazy" alt="NTM" />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/cabrel.webp') }}" loading="lazy" alt="Francis Cabrel" />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="contain-cards">
+						<img src="{{ asset('images/cyp.webp') }}" loading="lazy" alt="Cypress Hill" />
+					</div>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</section>
+{% endblock %}

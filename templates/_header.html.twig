@@ -1,0 +1,13 @@
+{% block body %}
+	<header id="header">
+		<nav>
+			<a href="{{ path('app_home') }}">
+				<img src="{{ asset('images/logo.webp') }}" loading="lazy" alt="logo de concerts and co" />
+			</a>
+			<ul>
+				<li><a href="{{ path('app_home') }}">Home</a></li>
+				<li><a href="{{ path('app_admin') }}">Administration</a></li>
+			</ul>
+		</nav>
+	</header>
+{% endblock %}

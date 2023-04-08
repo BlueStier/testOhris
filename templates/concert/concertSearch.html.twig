@@ -1,0 +1,26 @@
+{% block body %}
+	<div class="containerSearch">
+		{% if (concertList|length) == 0 %}
+			<p>
+				Aucun résultat pour votre recherche
+			</p>
+		{% else %}
+			{% for concert in concertList %}
+				<div class="card-item-search">
+					<div class="city">
+						{{ concert.city_name }}
+					</div>
+					<div class="date">
+						{{ concert.date.format('d/m/Y') }}
+					</div>
+					<div class="artist">
+						<img src="{{ concert.img_url }}" alt="à faire" />
+						<p>
+							{{ concert.artiste_name }}
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}

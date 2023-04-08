@@ -1,0 +1,188 @@
+@import 'variables.scss';
+@import 'header.scss';
+@import 'banner.scss';
+@import 'concert.scss';
+@import 'footer.scss';
+@import 'concertSearch.scss';
+@import 'admin.scss';
+
+body {
+    font-family: 'Cormorant SC', serif;
+    font-size: 14px;
+    background: $bgColor;
+    overflow-x: hidden;
+    margin: 0;
+
+    .main-content {
+        margin-top: 10vh;
+        color: $mainColor;
+        text-align: center;
+
+        @media screen and (min-width:992px) {
+            margin-top: 40vh;
+        }
+
+        h2 {
+            font-size: 3rem;
+        }
+
+        .contenu-filre {
+            display: flex;
+            flex-direction: column;
+            padding: 0 45px;
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            label[for="openSearch"] {
+                width: 60px;
+
+                .fa-magnifying-glass {
+                    font-weight: 900;
+                    color: white;
+                    width: 60px;
+                    padding: 10px;
+                    font-size: 3rem;
+                    margin-left: 25px;
+                    background-color: white;
+                    color: $bgColor;
+                    border-radius: 50px;
+                    transition: all .4s cubic-bezier(.49, .22, .52, 1.35);
+                    cursor: pointer;
+                }
+            }
+
+            input[type="checkbox"]:checked+label[for="openSearch"] {
+                .fa-magnifying-glass {
+                    background: $bgColor;
+                    color: $mainColor;
+                    transform: translateY(70px);
+                }
+            }
+
+            input[type="checkbox"]:checked~aside {
+                width: 100%;
+                height: auto;
+                opacity: 1;
+                display: block;
+            }
+
+            aside {
+                background-color: white;
+                color: $bgColor;
+                border-radius: 50px 0 0 50px;
+                animation: all .4s cubic-bezier(.49, .22, .52, 1.35);
+                display: none;
+                opacity: 0;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: $bgColor;
+
+                    h3 {
+                        font-size: 1.4rem;
+                    }
+
+                    button {
+                        font-size: 1.4rem;
+                        margin-bottom: 12px;
+                        padding: 15px;
+                        background: #212529;
+                        color: #FFF;
+                        border: 1px solid #FFF;
+                        width: 160px;
+                    }
+
+                    .containerForm {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        flex-wrap: wrap;
+
+                        .form-group {
+                            display: flex;
+                            flex-direction: column;
+                            width: 30%;
+                            align-items: flex-start;
+                            margin: 20px;
+
+                            input[type="text"] {
+                                font-size: 1.2rem;
+                                font-weight: 100;
+                                text-align: center;
+                                padding: 10px;
+                                margin-bottom: 0;
+                                transition: all .4s cubic-bezier(.49, .22, .52, 1.35);
+                            }
+
+                            label {
+                                font-size: 1.3rem;
+                                margin-bottom: 10px;
+                                display: flex;
+                                flex-direction: column;
+                                text-align: right;
+                                font-weight: 700;
+                            }
+
+                            .containCheckbox {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 10px;
+
+                                label {
+                                    font-size: 1.2rem;
+                                    font-weight: 100;
+                                    border: 1px solid $bgColor;
+                                    text-align: center;
+                                    padding: 10px;
+                                    margin-bottom: 0;
+                                    transition: all .4s cubic-bezier(.49, .22, .52, 1.35);
+                                }
+
+                                input[type="checkbox"] {
+                                    display: none;
+                                }
+
+                                input[type="checkbox"]:checked+label {
+                                    background: $bgColor;
+                                    color: $mainColor;
+                                    border: 1px solid $mainColor
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    .daterangepicker {
+        font-family: 'Cormorant SC', serif !important;
+
+        td.active {
+            background-color: $bgColor;
+        }
+
+        td.available:hover,
+        th.available:hover {
+            background-color: transparentize($color: $bgColor, $amount: 0.7);
+        }
+
+        .cancelBtn {
+            color: $mainColor;
+            background-color: $bgColor;
+            border: none;
+        }
+
+        .applyBtn {
+            color: $bgColor;
+            background-color: $mainColor;
+            border: 1px solid $bgColor;
+        }
+    }
+}

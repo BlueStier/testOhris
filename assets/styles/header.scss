@@ -1,0 +1,35 @@
+header{
+    width: 100%;
+    nav{
+        box-sizing: border-box;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        padding: 5px 15px;
+        a{
+            img{
+                width: 90px;
+                border-radius: 12px;
+            }
+        }
+        ul{
+            display: flex;
+            width: 85vw;
+            font-size: 2rem;
+            justify-content: space-evenly;
+            color : $mainColor;
+            li{
+                &::marker{
+                    content: " ";
+                }
+                a{
+                    color: $mainColor;
+                    text-decoration: none;
+                    text-shadow: 2px 2px $bgColor;
+                }
+            }
+        }
+    }
+}

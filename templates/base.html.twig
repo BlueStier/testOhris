@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Super site qui met en avant les cfuturs concerts !!!" />
+		<meta name="keywords" content="HTML, CSS, JavaScript, Symfony 5" />
+		<meta name="author" content="Loic Roussel" />
+		<link rel="icon" type="image/x-icon" href="/images/logo.ico" />
+		<meta name="csrf-token" content="{{ csrf_token('1234') }}" />
+		<title>
+			{% block title %}
+				Concert and Co | Home
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<!-- Link Swiper's CSS -->
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+			<link href="/fonts/Cormorant-VariableFont_wght.ttf" rel="stylesheet" />
+			<link rel="stylesheet"
+				type="text/css"
+				href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+			<link rel="stylesheet"
+				type="text/css"
+				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		{% endblock %}
+
+		{% block javascripts %}
+			<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+			<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+			<script type="text/javascript"
+				src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" defer></script>
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+
+		{% endblock %}
+	</body>
+</html>

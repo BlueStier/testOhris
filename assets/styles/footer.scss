@@ -1,0 +1,15 @@
+footer {
+    background: $mainColor;
+    width: 100%;
+    margin: 0 -8px;
+    color: $bgColor;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    transform: translateY(10px);
+
+    span {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,222 @@
+.main-admin {
+    color: $mainColor;
+
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    #openCreate {
+        font-weight: 900;
+        padding: 10px 12px;
+        font-size: 1.5rem;
+        margin-left: 25px;
+        background-color: white;
+        color: #212529;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+
+    .all-concerts {
+        display: flex;
+        flex-wrap: wrap;
+
+        .card-item {
+            position: relative;
+            max-width: 300px;
+            margin: 15px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .etiquette {
+                margin: 0;
+                background-color: #444;
+                font-weight: 700;
+                font-size: 1.2rem;
+                position: absolute;
+                padding: 2px 5px;
+                width: 35%;
+                z-index: 2;
+
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    width: 50%;
+                    background-color: #444;
+                    transform: skew(-20deg);
+                    transform-origin: 0 100%;
+                    z-index: -1;
+                }
+            }
+
+            .update {
+                position: absolute;
+                font-size: 1.5rem;
+                right: 0;
+                padding: 15px;
+                background-color: $cardColor;
+                border-radius: 0 0 0 8px;
+            }
+
+            .infos {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-color: $cardColor;
+                width: 100%;
+                padding: 10px 0;
+                text-align: center;
+
+                P {
+                    margin: 0;
+                }
+
+                .artist {
+                    font-size: 1.3rem;
+                }
+
+                .delete {
+                    position: absolute;
+                    font-size: 1.5rem;
+                    right: 0;
+                    padding: 13px;
+                    background-color: $mainColor;
+                    border-radius: 0 0 0 8px;
+                    top: 0px;
+                    color: red;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .modal {
+        z-index: 3;
+        padding-top: 100px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+
+        .modal-content {
+            display: flex;
+            justify-content: center;
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: $bgColor;
+                width: 30vw;
+                background-color: $mainColor;
+                padding: 25px;
+                border-radius: 8px;
+                position: relative;
+
+                h3 {
+                    font-size: 1.3rem;
+                    margin: 0
+                }
+
+                .closeCross {
+                    font-size: 4rem;
+                    font-weight: 700;
+                    position: absolute;
+                    top: -13px;
+                    right: 6px;
+                    cursor: pointer
+                }
+
+                form {
+                    width: 100%;
+
+                    #concert_update,
+                    #form {
+                        div {
+                            &:not(.containerForm) {
+                                margin: 20px 0;
+
+                                &>label {
+                                    font-size: 1.3rem;
+                                    margin-bottom: 10px;
+                                    font-weight: 700;
+                                }
+
+                                &:nth-of-type(1) {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .containerForm {
+                        display: flex;
+                        margin-top: 5px;
+
+                        label {
+                            font-size: 1.2rem;
+                            font-weight: 100;
+                            border: 1px solid $bgColor;
+                            text-align: center;
+                            padding: 10px;
+                            margin-bottom: 0;
+                            transition: all .4s cubic-bezier(.49, .22, .52, 1.35);
+                        }
+
+                        select {
+                            font-size: 1.2rem;
+                            font-weight: 100;
+                            border: 1px solid $bgColor;
+                            text-align: center;
+                            padding: 5px;
+                            margin: 0 5px;
+                            width: 100%;
+                        }
+
+                        input[type="checkbox"] {
+                            display: none;
+                        }
+
+                        input[type="checkbox"]:checked+label {
+                            background: $bgColor;
+                            color: $mainColor;
+                            border: 1px solid $mainColor
+                        }
+                    }
+
+                    select.containerForm {
+                        font-size: 1.2rem;
+                        font-weight: 100;
+                        border: 1px solid $bgColor;
+                        padding: 10px;
+                        width: 100%;
+                    }
+
+                    .containerButton {
+                        text-align: center;
+                        font-size: 1.4rem;
+                        margin-bottom: 12px;
+                        padding: 15px;
+                        background: #212529;
+                        color: $mainColor;
+                        border: 1px solid #FFF;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

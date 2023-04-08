@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Concert & co | Acceuil
+{% endblock %}
+
+{% block body %}
+	{% include '_header.html.twig' %}
+	{% include '_banner.html.twig' %}
+	<section class="main-content" id="mainContent">
+		<h2>
+			Trouvez votre concert
+		</h2>
+		<div class="contenu-filre" id="filtre">
+			<input type="checkbox" id="openSearch" />
+			<label for="openSearch"><i class="fa-solid fa-magnifying-glass"></i></label>
+			<aside>
+				<form id="formHome">
+					<h3>
+						Recherchez un concert
+					</h3>
+					<div class="containerForm">
+						<div class="form-group">
+							<label>Choisissez une plage de date :</label>
+							<input type="text" name="daterange" id="daterange" />
+							<div class="datepicker-container openemr-calendar" id="datepicker-div"></div>
+						</div>
+
+						<div class="form-group">
+							<label>Pour quel artiste ?</label>
+							<div class="containCheckbox">
+								{% for artist in artists %}
+									<input type="checkbox" value="artist{{ artist.id }}" id="artist{{ artist.id }}" />
+									<label for="artist{{ artist.id }}">{{ artist.name }}</label>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Pour quelle ville ?</label>
+							<div class="containCheckbox">
+								{% for city in citys %}
+									<input type="checkbox" value="city{{ city.id }}" id="city{{ city.id }}" />
+									<label for="city{{ city.id }}">{{ city.name }}</label>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<button id="goSearch" type="submit">Rechercher</button>
+				</form>
+			</aside>
+			<div class="presentation" id="cardContainer">
+				<div class="cards-all">
+					{% include 'concert/concert.html.twig' with {
+						concerts: concerts
+					} %}
+				</div>
+			</div>
+		</div>
+	</section>
+	{% include '_footer.html.twig' %}
+{% endblock %}

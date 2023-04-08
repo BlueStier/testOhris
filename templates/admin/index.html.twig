@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Concert & co | Administration
+{% endblock %}
+
+{% block body %}
+	{% include '_header.html.twig' %}
+	<section class="main-admin">
+		{% for message in app.flashes('update') %}
+			<dialog class="modal" open>
+				<div class="modal-content">
+					<div class="container">
+						<h3>
+							{{ message }}
+						</h3>
+					</div>
+				</div>
+			</dialog>
+		{% endfor %}
+		{% for message in app.flashes('delete') %}
+			<dialog class="modal" open>
+				<div class="modal-content">
+					<div class="container">
+						<h3>
+							{{ message }}
+						</h3>
+					</div>
+				</div>
+			</dialog>
+		{% endfor %}
+		<h1>
+			Administration
+		</h1>
+		<label id="openCreate" title="Créer un évenement"><i class="fa-solid fa-plus"></i></label>
+		<section class="all-concerts">
+			{% for concert in concerts %}
+				<div class="card-item">
+					<p class="etiquette">
+						<span>{{ concert.date.format('d/m/Y') }}</span>
+					</p>
+					<span class="update"
+						data-id="{{ concert.id }}"
+						data-name="{{ concert.artist_id }}"
+						data-date="{{ concert.date.format('d/m/Y') }}"
+						data-city="{{ concert.city_id }}">
+						<i class="fa-solid fa fa-pencil"></i>
+					</span>
+					<img src="{{ concert.img_url }}" alt="à faire" />
+					<div class="infos">
+						<p class="artist">
+							{{ concert.artiste_name }}
+						</p>
+						<p>
+							{{ concert.city_name }}
+						</p>
+						<span class="delete"
+						data-id="{{ concert.id }}">
+						<i class="fa-solid fa fa-trash"></i>
+					</span>
+					</div>
+				</div>
+			{% endfor %}
+		</section>
+		<dialog id="modal" class="modal">
+			<div class="modal-content">
+				<div class="container">
+					<h3>
+						Modification d'un événement
+					</h3>
+					<span onclick="document.getElementById('modal').close()" class="closeCross">×</span>
+					{% if updateForm is defined %}
+						{{ updateForm|raw }}
+					{% endif %}
+				</div>
+			</div>
+		</dialog>
+		<dialog id="modalDelete" class="modal">
+			<div class="modal-content">
+				<div class="container">
+					<h3>
+						Confimez-vous la suppression ?
+					</h3>
+					<span onclick="document.getElementById('modalDelete').close()" class="closeCross">×</span>
+					{% if deleteForm is defined %}
+						{{ deleteForm|raw }}
+					{% endif %}
+				</div>
+			</div>
+		</dialog>
+	</section>
+	{% include '_footer.html.twig' %}
+{% endblock %}

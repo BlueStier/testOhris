@@ -1,0 +1,18 @@
+{% block body %}
+	{% for concert in concerts %}
+		<div class="card-item">
+			<p class="etiquette">
+				<span>{{ concert.date.format('d/m/Y') }}</span>
+			</p>
+			<img src="{{ asset(concert.img_url) }}" alt="à faire" />
+			<div class="infos">
+				<p class="artist">
+					{{ concert.artiste_name }}
+				</p>
+				<p>
+					{{ concert.city_name }}
+				</p>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}
