@@ -66,7 +66,7 @@ if (form != null && form != undefined) {
         formData.append("artists", checkedCheckboxesArtist);
         formData.append("citys", checkedCheckboxesCity)
 
-        fetch('/concertupdate', {
+        fetch('/concertSearch', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -122,6 +122,10 @@ function convertDate(dateString) {
     const formattedDate = date.toISOString().slice(0, 10);
     return formattedDate;
 }
+const elementCreate = document.getElementById("openCreate");
+elementCreate.addEventListener("click", () => {
+    document.getElementById('modalCreate').show()
+})
 const elements = document.querySelectorAll(".update");
 const elementsArray = Array.prototype.slice.call(elements);
 elementsArray.forEach(function (elem) {
@@ -139,7 +143,7 @@ elementsArray.forEach(function (elem) {
         document.getElementById('concert_update_id').value = id;
         document.getElementById('concert_update_artists').value = idArtist;
         document.getElementById('concert_update_citys').value = idCity;
-        document.getElementById('modal').show()
+        document.getElementById('modalUpdate').show()
     });
 });
 const elementsDelete = document.querySelectorAll(".delete");

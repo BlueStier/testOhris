@@ -16,9 +16,10 @@ class ConcertCreateType extends AbstractType
 
         $builder
             ->add('datel', DateType::class, [
-                'label' => 'Choisissez une date :',
+                'label' => 'Choisissez une date',
                 'attr' => ['id' => 'daterange', 'class' => 'containerForm'],
                 'format' => 'dd MM yyyy',
+                'data' => new \DateTime()
             ])
             ->add('artists', ChoiceType::class, [
                 'label' => 'Pour quel artiste ?',

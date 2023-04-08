@@ -17,7 +17,7 @@ class ConcertUpdateType extends AbstractType
         $builder
             ->add('id', NumberType::class)
             ->add('daterange', DateType::class, [
-                'label' => 'Choisissez une date :',
+                'label' => 'Choisissez une date',
                 'attr' => ['id' => 'daterange', 'class' => 'containerForm'],
                 'format' => 'dd MM yyyy',
             ])

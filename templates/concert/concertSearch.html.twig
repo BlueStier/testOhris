@@ -14,7 +14,7 @@
 						{{ concert.date.format('d/m/Y') }}
 					</div>
 					<div class="artist">
-						<img src="{{ concert.img_url }}" alt="à faire" />
+						<img src="{{ asset(concert.img_url) }}" alt="à faire"/>
 						<p>
 							{{ concert.artiste_name }}
 						</p>

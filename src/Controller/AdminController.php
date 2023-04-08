@@ -6,6 +6,7 @@ use App\Entity\Artist;
 use App\Entity\City;
 use App\Entity\Concert;
 use App\Form\ConcertUpdateType;
+use App\Form\ConcertCreateType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Helper\ConcertHelper;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -27,57 +28,48 @@ class AdminController extends AbstractController
       $this->concerts = $concertHelper->getConcertAdmin();
       $this->artists = $concertHelper->getArtists();
       $this->citys = $concertHelper->getCitys();
-      $deleteForm = $this->createFormBuilder()->add('id', NumberType::class)->getForm();
       return $this->render('admin/index.html.twig', [
          'concerts' => $this->concerts,
          'artists' => $this->artists,
          'citys' => $this->citys,
+         'createForm' => $this->create($request, $entityManager),
          'updateForm' => $this->update($request, $entityManager),
          'deleteForm' => $this->delete($request, $entityManager)
       ]);
    }
    #[Route('/admin/create', name: 'app_admin_create')]
-   public function create(EntityManagerInterface $entityManager, Request $request): Response
+   public function create(Request $request, EntityManagerInterface $entityManager): string
    {
-      $repoArtist = $entityManager->getRepository(Artist::class);
-      $repoCity = $entityManager->getRepository(City::class);
-      $artistList =  $repoArtist->findAll();
-      $CityList =  $repoCity->findAll();
-      $choicesArtist = [];
-      $choicesCity = [];
-      foreach ($artistList as $item) :
-         $choicesArtist[$item->getName()] = $item->getId();
-      endforeach;
-      foreach ($CityList as $item) :
-         $choicesCity[$item->getName()] = $item->getId();
-      endforeach;
-      $form = $this->createFormBuilder()
-         ->add('date', DateType::class)
-         ->add("Artiste", ChoiceType::class, [
-            'choices' => $choicesArtist
-         ])
-         ->add("Ville", ChoiceType::class, [
-            'choices' => $choicesCity
-         ])
-         ->add('submit', SubmitType::class)
-         ->getForm();
+      $form = $this->createForm(ConcertCreateType::class, null, [
+         'artists' => $this->artists,
+         'citys' => $this->citys
+      ]);
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
          $data = $form->getData();
          $concert = new Concert();
-         $concert->setArtistId($data['Artiste']);
-         $concert->setCityId($data['Ville']);
-         $concert->setDate($data['date']);
-         $concert->setImgUrl($this->get_imgUrl($data['Artiste']));
+         $concert->setDate($data['datel']);
+         $concert->setArtistId($data['artists']->getId());
+         $concert->setCityId($data['citys']->getId());
+         $concert->setImgUrl($this->get_imgUrl($data['artists']->getId()));
+         $concert->setArtist($entityManager->getRepository(Artist::class)->findOneById($data['artists']->getId()));
+         $concert->setCity($entityManager->getRepository(City::class)->findOneById($data['citys']->getId()));
+         dump($concert);
+         //die;
          $entityManager->persist($concert);
          $entityManager->flush();
+         $this->addFlash(
+            'create',
+            'Votre évenement a bien était enregistré'
+         );
+         return $this->redirectToRoute("app_admin");
       }
-      return $this->render('admin/create.html.twig', [
-         'form' => $form->createView()
+      return $this->renderView('admin/create.html.twig', [
+         'createForm' => $form->createView(),
       ]);
    }
    #[Route('/admin/update', name: 'app_admin_update')]
-   public function update(Request $request, EntityManagerInterface $entityManager)
+   public function update(Request $request, EntityManagerInterface $entityManager): string
    {
       $form = $this->createForm(ConcertUpdateType::class, null, [
          'artists' => $this->artists,
@@ -108,7 +100,7 @@ class AdminController extends AbstractController
       ]);
    }
    #[Route('/admin/delete', name: 'app_admin_delete')]
-   private function delete(Request $request, EntityManagerInterface $entityManager)
+   private function delete(Request $request, EntityManagerInterface $entityManager): string
    {
       $form = $this->createFormBuilder()
          ->add('delete_id', NumberType::class)

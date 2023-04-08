@@ -26,15 +26,15 @@ class Concert
 
     #[ORM\Column(length: 50)]
     private ?string $img_url = null;
-    
+
     #[ORM\ManyToOne(targetEntity : Artist::class)]
     #[ORM\JoinColumn(nullable:false)]
- 
+
     private $artist;
-    
+
     #[ORM\ManyToOne(targetEntity : City::class)]
     #[ORM\JoinColumn(nullable:false)]
- 
+
     private $city;
 
     public function getId(): ?int
@@ -97,6 +97,17 @@ class Concert
     public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setCity(?City $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }

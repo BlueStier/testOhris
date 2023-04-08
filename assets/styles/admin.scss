@@ -64,6 +64,7 @@
                 padding: 15px;
                 background-color: $cardColor;
                 border-radius: 0 0 0 8px;
+                cursor: pointer;
             }
 
             .infos {
@@ -142,6 +143,20 @@
 
                 form {
                     width: 100%;
+
+                    #concert_create {
+                        div {
+                            &:not(.containerForm) {
+                                margin: 20px 0;
+
+                                &>label {
+                                    font-size: 1.3rem;
+                                    margin-bottom: 10px;
+                                    font-weight: 700;
+                                }
+                            }
+                        }
+                    }
 
                     #concert_update,
                     #form {
